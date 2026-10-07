@@ -293,6 +293,14 @@ def main():
     if not NEBIUS_API_KEY:
         parser.error("NEBIUS_API_KEY environment variable is not set")
 
+    # Register the Nemotron-3-Ultra harness profile override at runtime rather
+    # than at import time, so importing the module does not mutate global state.
+    # register_harness_profile(
+    #     HARNESS_PROFILE_MODEL,
+    #     HarnessProfile(
+    #         excluded_middleware={"NemotronPolicyNudgeMiddleware"},
+    #     ),
+    # )
 
     data_suite_dir = Path(__file__).parent / args.data_dir
     expected_path = data_suite_dir / "expected.json"

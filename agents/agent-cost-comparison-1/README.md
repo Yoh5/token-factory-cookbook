@@ -1,4 +1,4 @@
-# Agent Cost Comparison 2
+# Agent Cost Comparison 1
 
 Benchmark Nebius-hosted LLMs on a small data-analysis task and compare their
 **cost**, **latency**, **token usage**, and **correctness**.
@@ -171,13 +171,9 @@ uv run agent_cost_comparison_1.py --data-dir data-2 --dump-transcript
 
 ## Nemotron-3-Ultra compatibility
 
-Deep Agents' built-in Ultra profile can mistake this single-turn filesystem
-task for a task transition. The benchmark keeps the rest of that profile but
-disables `NemotronPolicyNudgeMiddleware`:
+There was a bug in `deepagents v0.7.10`  that caused Ultra to fail the benchmark. 
 
-```python
-register_harness_profile(
-    "nebius:nvidia/Nemotron-3-Ultra-550b-a55b",
-    HarnessProfile(excluded_middleware={"NemotronPolicyNudgeMiddleware"}),
-)
-```
+Issue created : [langchain-ai/deepagents/issues/5982](https://github.com/langchain-ai/deepagents/issues/5982)   
+Fix verified in v0.7.23 ✅
+
+The bug version is preserved in [bug](bug) folder.
